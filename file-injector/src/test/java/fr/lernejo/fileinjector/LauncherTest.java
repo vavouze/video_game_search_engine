@@ -2,6 +2,7 @@ package fr.lernejo.fileinjector;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,12 @@ class LauncherTest {
     void main_terminates_before_5_sec() {
         assertTimeoutPreemptively(
             Duration.ofSeconds(5L),
-            () -> Launcher.main(new String[]{}));
+            () -> Launcher.main(new String[]{"src/test/resources/games.json"}));
+    }
+
+    @Test
+    void without_arg() throws IOException {
+        String[] args = new String[0];
+        Launcher.main(args);
     }
 }
