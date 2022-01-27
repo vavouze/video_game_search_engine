@@ -23,7 +23,7 @@ public class Launcher {
                     RabbitTemplate template = springContext.getBean(RabbitTemplate.class);
                     for (FileMapper game : games_map) {
                         template.setMessageConverter(new Jackson2JsonMessageConverter());
-                        template.convertAndSend("", "game_info", game); } } catch (Exception ex) { ex.printStackTrace(); }
+                        template.convertAndSend("", "game_info", game,m -> { m.getMessageProperties().getHeaders().put("game_id", game.id);return m; }); } } catch (Exception ex) { ex.printStackTrace(); }
             } else {
                 System.out.println("you must provide a JSON file"); }
         }}}
