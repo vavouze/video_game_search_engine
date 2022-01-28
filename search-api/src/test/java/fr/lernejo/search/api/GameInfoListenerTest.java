@@ -16,7 +16,7 @@ class GameInfoListenerTest {
         try (AbstractApplicationContext springContext = new AnnotationConfigApplicationContext(Launcher.class)) {
             RabbitTemplate template = springContext.getBean(RabbitTemplate.class);
             template.setMessageConverter(new Jackson2JsonMessageConverter());
-            template.convertAndSend("", "game_info", "{]", m -> {
+            template.convertAndSend("", "game_info", "{}", m -> {
                 m.getMessageProperties().getHeaders().put("game_id", "1");
                 return m;
             });

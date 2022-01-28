@@ -8,4 +8,8 @@ class LauncherTest {
     void main_terminates_before_5_sec() {
         Launcher.main(new String[]{"src/test/resources/games.json"});
     }
+    @Test
+    void main_without_args() {
+        Launcher.main(new String[]{});
+    }
 }
