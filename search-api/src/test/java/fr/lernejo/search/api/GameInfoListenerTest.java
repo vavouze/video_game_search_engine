@@ -12,9 +12,10 @@ class GameInfoListenerTest {
         String message = "{}";
         String id = "1";
         ElasticSearchConfiguration config = new ElasticSearchConfiguration();
-        RestHighLevelClient cli = config.bean("localhost",9200,"elastic","admin");
+        RestHighLevelClient cli = config.bean("localhost",8082,"elastic","admin");
         GameInfoListener listener = new GameInfoListener(cli);
         try {
+            Launcher.main(new String[]{});
             listener.onMessage(message,id);
         } catch (IOException e) {
             e.printStackTrace();
