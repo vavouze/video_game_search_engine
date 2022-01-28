@@ -27,9 +27,7 @@ class ApiElasticController {
         SearchRequest searchRequest = new SearchRequest().source(SearchSourceBuilder.searchSource().query(new QueryStringQueryBuilder(query)));
         SearchResponse response = this.cli.search(searchRequest, RequestOptions.DEFAULT);
         ArrayList res = new ArrayList();
-        for (SearchHit hit :response.getHits()){
-            res.add(hit.getSourceAsMap());
-        }
+        response.getHits().forEach(hit -> res.add(hit.getSourceAsMap()));
         return res;
     }
 }
